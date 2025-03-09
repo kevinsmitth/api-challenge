@@ -1,80 +1,71 @@
-## Corelab Challenge:
+# PHP Laravel Challenge
 
-You are tasked with building a web application that allows users to create and manage their to-do lists. The application should consist of a responsive webpage built in React, and an API built in PHP Laravel to store and manage the to-do lists.
+Projeto desenvolvido para o desafio da [Corelab](https://www.corelabbr.com/).
 
-### The repositories
-The [frontend repository](https://github.com/corelabbr/corelab-challenge-web-app-php)
+## 🚀 Começando
 
-If you feel more comfortable, you can pick another React framework and show us your skills.
+Consulte **Instalação** para saber como instalar o projeto.
 
-The [backend repository](https://github.com/corelabbr/corelab-api-challenge-php)
+### 📋 Pré-requisitos
 
-If you feel more comfortable, you can pick another PHP framework and show us your skills.
+- PHP ^8.2 ou maior;
+- Laravel Framework ^11;
+- Laravel Sail (Docker);
+- L5 Swagger;
+- MariaDB ^11.0;
+- NodeJs ^20.14.0 LTS;
+- Npm ^10.7.0;
+- Pest PHP for Tests;
+- Redis;
+- Composer ^2.8;
 
-### The Layout
-Open the [layout mockup](https://www.figma.com/file/sQrUVHTlyogq3qGdkqGTXN/mockup?node-id=7%3A2&t=ANTOTiqjqGWYuoUr-0) in desktop and mobile version and follow this design as much as possible.
+### 🔧 Instalação
 
-### The application should have the following functionality:
+Dentro da pasta do projeto, rode os comandos na ordem abaixo.
 
-1. Users should be able to create, read, update, and delete to-do items using the API.
-2. Users should be able to mark an item as a favorite.
-3. Users should be able to set a color for each to-do item.
-4. The React frontend should display the user's to-do list in a responsive and visually appealing manner, with the ability to filter by favorite items and color.
-5. The favorited items should be displayed at the top of the list.
+```
+cp .env.example .env
+```
 
-### Technical Requirements:
-1. The backend API should be built in PHP Laravel framework and use a database of your choice (e.g., MySQL, PostgreSQL, etc.).
-2. The frontend should be built in React and use modern web development tools and best practices.
-3. The application should be responsive and visually appealing.
+```
+./vendor/bin/sail up -d
+```
 
-### Deliverables:
-1. A link to a GitHub repository containing the complete source code for the project.
-2. A written description of how to set up and run the application locally.
+```
+./vendor/bin/sail artisan key:generate
+```
 
-### Evaluation Criteria:
-1. Code Quality
-2. Code Format
-3. Code Performance
-4. Frontend Design
-5. If your code is Easily Readable
-6. Mobile First approach
-7. Code Responsibility
-8. Features Work
-9. Responsiveness
-10. Does the application meet the functionality requirements listed above?
-11. Is the code well-organized, easy to read, and well-documented?
-12. Are modern web development tools and best practices used?
-13. Is the application visually appealing and responsive?
+```
+./vendor/bin/sail composer install
+```
 
-### Backend
-Repository: 
-1. PHP: ^7.4
-2. Laravel: ^8.0
-3. Database: Choose your own, you can even use PostgreSQL.
+```
+npm install && npm run dev
+```
 
-### Frontend
-Repository: 
-1. Node: ^16.15.0
-2. NPM: ^8.5.5
-3. Framework: React TS
-4. Sass or other preprocessor
+## 📝 Documentação da API com Swagger
 
-### Want to impress us even more?
-If you feel comfortable and want to impress us even more, you can do the following:
+Link: [http://localhost/api/documentation](http://localhost/api/documentation)
 
-1. Work on correct types and interfaces
-2. Work on eslint rules
-3. Work prettier config
-4. Work on docker containers
-5. Work on tests
-6. Work on CI/CD
 
-### What to do when you finish?
+<img src="./public/swagger.png" alt="Swagger">
 
-Create a file PULL_REQUEST.md where you will describe what you did and how in as much detail as possible. Feel free to add videos for better explanation.
+## 🧪 Testes
 
-Create a new pull request using the same branch name for Backend and Frontend
+Utilize este comando para executar os testes.
 
-Send us the pull requests and that's all!
+```
+./vendor/bin/sail pest
+```
 
-#### Good luck! The sky is the limit 🚀
+## 🛠️ Construído com
+
+- [Laravel Framework 11](https://laravel.com/) - Framework
+- [Laravel Sail (Docker)](https://laravel.com/docs/11.x/sail) - Ambiente
+- [Pest PHP](https://pestphp.com/docs/plugins/laravel) - Pest PHP for Tests
+- [MariaDB](https://mariadb.org/) - Banco de dados
+- [Redis](https://redis.io/) - Cache
+
+## ✒️ Autores
+
+- **Kevin Smith** - _Desenvolvimento_ - [Kevin Smith](https://github.com/kevinsmitth)

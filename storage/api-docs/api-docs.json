@@ -19,7 +19,7 @@
         "/todos": {
             "get": {
                 "tags": [
-                    "Todo"
+                    "Todos"
                 ],
                 "summary": "List of all todo items",
                 "operationId": "18e676fc7a1838c48c63274e52066ac8",
@@ -88,7 +88,7 @@
             },
             "post": {
                 "tags": [
-                    "Todo"
+                    "Todos"
                 ],
                 "summary": "Create new todo item",
                 "description": "Colors are in hex format. There is the list of available colors: #ffffff, #ff0000, #00ff00, #0000ff, #ffff00, #00ffff, #ff00ff, #000000, #808080, #ff8000, #8000ff",
@@ -179,7 +179,7 @@
         "/todos/{id}": {
             "get": {
                 "tags": [
-                    "Todo"
+                    "Todos"
                 ],
                 "summary": "Get todo item",
                 "operationId": "1b99eaebc4bafa42301fbf780b77da93",
@@ -249,7 +249,7 @@
             },
             "put": {
                 "tags": [
-                    "Todo"
+                    "Todos"
                 ],
                 "summary": "Update todo item",
                 "description": "Colors are in hex format. There is the list of available colors: #ffffff, #ff0000, #00ff00, #0000ff, #ffff00, #00ffff, #ff00ff, #000000, #808080, #ff8000, #8000ff",
@@ -319,7 +319,7 @@
             },
             "delete": {
                 "tags": [
-                    "Todo"
+                    "Todos"
                 ],
                 "summary": "Delete todo item",
                 "operationId": "e6e24dd784980cf6f9fe389df03fdd14",
@@ -550,8 +550,8 @@
     },
     "tags": [
         {
-            "name": "Todo",
-            "description": "Todo"
+            "name": "Todos",
+            "description": "Todos"
         },
         {
             "name": "Authentication",

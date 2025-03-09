@@ -49,7 +49,7 @@ class TodoController extends Controller implements HasMiddleware
 
     /**
      * @OA\Get(
-     *    tags={"Todo"},
+     *    tags={"Todos"},
      *     path="/todos",
      *     summary="List of all todo items",
      *     security={{"sanctum":{}}},
@@ -120,7 +120,7 @@ class TodoController extends Controller implements HasMiddleware
 
     /**
      * @OA\Post(
-     *    tags={"Todo"},
+     *    tags={"Todos"},
      *     path="/todos",
      *     summary="Create new todo item",
      *     description="Colors are in hex format. There is the list of available colors: #ffffff, #ff0000, #00ff00, #0000ff, #ffff00, #00ffff, #ff00ff, #000000, #808080, #ff8000, #8000ff",
@@ -188,7 +188,7 @@ class TodoController extends Controller implements HasMiddleware
     /**
      * @OA\Get(
      *     path="/todos/{id}",
-     *     tags={"Todo"},
+     *     tags={"Todos"},
      *     summary="Get todo item",
      *     security={{"sanctum":{}}},
      *
@@ -255,7 +255,7 @@ class TodoController extends Controller implements HasMiddleware
     /**
      * @OA\Put(
      *     path="/todos/{id}",
-     *     tags={"Todo"},
+     *     tags={"Todos"},
      *     summary="Update todo item",
      *     description="Colors are in hex format. There is the list of available colors: #ffffff, #ff0000, #00ff00, #0000ff, #ffff00, #00ffff, #ff00ff, #000000, #808080, #ff8000, #8000ff",
      *     security={{"sanctum":{}}},
@@ -329,7 +329,7 @@ class TodoController extends Controller implements HasMiddleware
     /**
      * @OA\Delete(
      *     path="/todos/{id}",
-     *     tags={"Todo"},
+     *     tags={"Todos"},
      *     summary="Delete todo item",
      *     security={{"sanctum":{}}},
      *
