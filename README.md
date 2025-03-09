@@ -1,6 +1,6 @@
 # PHP Laravel Challenge
 
-Projeto desenvolvido para o desafio da [Corelab](https://www.corelabbr.com/).
+Projeto desenvolvido para o desafio da Corelab.
 
 ## 🚀 Começando
 
