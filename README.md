@@ -32,11 +32,15 @@ docker compose up -d
 ```
 
 ```
+./vendor/bin/sail composer install
+```
+
+```
 ./vendor/bin/sail artisan key:generate
 ```
 
 ```
-./vendor/bin/sail composer install
+./vendor/bin/sail artisan migrate
 ```
 
 ```
