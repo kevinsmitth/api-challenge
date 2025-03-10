@@ -111,7 +111,7 @@ class TodoController extends Controller implements HasMiddleware
         ]);
 
         $todos = Todo::query()
-            ->where('user_id', auth()->id())
+            // ->where('user_id', auth()->id())
             ->orderBy('favorite', 'desc')
             ->simplePaginate($data['limit'] ?? 10, ['*'], 'page', $data['page'] ?? 1);
 
