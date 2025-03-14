@@ -100,6 +100,8 @@ class AuthenticatedSessionController extends Controller
         try {
             $request->user()->tokens()->delete();
 
+            session()->flush();
+
             return response()->json(['message' => 'Logout successful']);
         } catch (\Exception $e) {
             Log::error($e->getMessage(), ['error' => $e]);
