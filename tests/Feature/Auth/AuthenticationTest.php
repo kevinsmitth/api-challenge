@@ -5,7 +5,7 @@ use App\Models\User;
 test('users can authenticate using the login screen', function () {
     $user = User::factory()->create();
 
-    $response = $this->post('/api/login', [
+    $response = $this->post('/login', [
         'email' => $user->email,
         'password' => 'password',
     ]);
