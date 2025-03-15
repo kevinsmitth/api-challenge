@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Enums\TodoColorEnum;
 use Database\Factories\TodoFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -25,7 +24,6 @@ class Todo extends Model
     ];
 
     protected $casts = [
-        'color' => TodoColorEnum::class,
         'completed' => 'boolean',
         'favorite' => 'boolean',
     ];

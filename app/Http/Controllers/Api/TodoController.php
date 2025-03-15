@@ -111,7 +111,7 @@ class TodoController extends Controller implements HasMiddleware
         ]);
 
         $todos = Todo::query()
-            // ->where('user_id', auth()->id())
+            ->where('user_id', auth()->id())
             ->orderBy('favorite', 'desc')
             ->simplePaginate($data['limit'] ?? 10, ['*'], 'page', $data['page'] ?? 1);
 
@@ -123,7 +123,7 @@ class TodoController extends Controller implements HasMiddleware
      *    tags={"Todos"},
      *     path="/todos",
      *     summary="Create new todo item",
-     *     description="Colors are in hex format. There is the list of available colors: #ffffff, #ff0000, #00ff00, #0000ff, #ffff00, #00ffff, #ff00ff, #000000, #808080, #ff8000, #8000ff",
+     *     description="Colors are in hex format.",
      *     security={{"sanctum":{}}},
      *
      *     @OA\RequestBody(
@@ -253,11 +253,122 @@ class TodoController extends Controller implements HasMiddleware
     }
 
     /**
+     * @OA\Get(
+     *     path="/todos/search",
+     *     tags={"Todos"},
+     *     summary="Search todo items",
+     *     security={{"sanctum":{}}},
+     *     @OA\Parameter(
+     *          name="search",
+     *          in="query",
+     *          required=false,
+     *
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *     ),
+     *     @OA\Parameter(
+     *          name="favorite",
+     *          in="query",
+     *          required=false,
+     *
+     *          @OA\Schema(
+     *              type="boolean"
+     *          )
+     *     ),
+     *     @OA\Parameter(
+     *          name="completed",
+     *          in="query",
+     *          required=false,
+     *
+     *          @OA\Schema(
+     *              type="boolean"
+     *          )
+     *     ),
+     *     @OA\Parameter(
+     *          name="page",
+     *          in="query",
+     *          required=false,
+     *
+     *          @OA\Schema(
+     *              type="integer",
+     *              default=1
+     *          )
+     *     ),
+     *     @OA\Parameter(
+     *          name="limit",
+     *          in="query",
+     *          required=false,
+     *
+     *          @OA\Schema(
+     *              type="integer",
+     *              default=10
+     *          )
+     *     ),
+     *     @OA\Response(
+     *          response=200,
+     *          description="OK",
+     *
+     *     @OA\JsonContent(
+     *                 type="object",
+     *                 @OA\Property(property="current_page", type="integer", example=1),
+     *                 @OA\Property(property="data", type="array", @OA\Items(
+     *                     type="object",
+     *                     @OA\Property(property="id", type="integer", example=1),
+     *                     @OA\Property(property="title", type="string", example="Buy milk"),
+     *                     @OA\Property(property="description", type="string", example="Buy milk"),
+     *                     @OA\Property(property="completed", type="boolean", example=false),
+     *                     @OA\Property(property="favorite", type="boolean", example=false),
+     *                     @OA\Property(property="color", type="string", example="#ff0000"),
+     *                 )),
+     *      )
+     *     ),
+     *     @OA\Response(
+     *          response=401,
+     *          description="Unauthorized",
+     *     ),
+     *     @OA\Response(
+     *          response=500,
+     *          description="Server error",
+     *     )
+     * )
+     *
+     * @param Request $request
+     * @return AnonymousResourceCollection|JsonResponse
+     */
+    public function search(Request $request): AnonymousResourceCollection|JsonResponse
+    {
+        $filter = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'favorite' => 'nullable|boolean',
+            'completed' => 'nullable|boolean',
+            'page' => 'nullable|integer',
+            'limit' => 'nullable|integer',
+        ]);
+
+        try {
+            $todos = Todo::query()->where('user_id', auth('sanctum')->id())
+                ->when(data_get($filter, 'title'), fn($query) => $query->where('title', 'like', "%{$filter['title']}%"))
+                ->when(isset($filter['favorite']), fn($query) => $query->where('favorite', $filter['favorite']))
+                ->when(isset($filter['completed']), fn($query) => $query->where('completed', $filter['completed']))
+                ->simplePaginate(data_get($filter, 'limit') ?? 10, ['*'], 'page', data_get($filter, 'page') ?? 1);
+
+            return TodoResource::collection($todos);
+        } catch (\Exception $e) {
+            Log::error($e->getMessage(), ['error' => $e]);
+
+            return response()->json([
+                'message' => 'Server error. Try again later.',
+            ], 500);
+        }
+    }
+
+    /**
      * @OA\Put(
      *     path="/todos/{id}",
      *     tags={"Todos"},
      *     summary="Update todo item",
-     *     description="Colors are in hex format. There is the list of available colors: #ffffff, #ff0000, #00ff00, #0000ff, #ffff00, #00ffff, #ff00ff, #000000, #808080, #ff8000, #8000ff",
+     *     description="Colors are in hex format.",
      *     security={{"sanctum":{}}},
      *
      *     @OA\RequestBody(

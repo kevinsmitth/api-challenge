@@ -20,7 +20,7 @@ class TodoResource extends JsonResource
             'description' => $this->description,
             'completed' => $this->completed,
             'favorite' => $this->favorite,
-            'color' => $this->color->value,
+            'color' => $this->color,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
         ];
     }

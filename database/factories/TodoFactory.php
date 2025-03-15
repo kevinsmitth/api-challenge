@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Enums\TodoColorEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,8 +18,8 @@ class TodoFactory extends Factory
     {
         return [
             'title' => fake()->sentence(),
-            'description' => fake()->paragraph(),
-            'color' => TodoColorEnum::WHITE,
+            'description' => fake()->sentence(),
+            'color' => '#FFFFFF',
             'completed' => false,
             'favorite' => false,
         ];

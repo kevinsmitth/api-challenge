@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests\Todo;
 
-use App\Enums\TodoColorEnum;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Enum;
 
 class TodoUpdateRequest extends FormRequest
 {
@@ -26,8 +24,8 @@ class TodoUpdateRequest extends FormRequest
     {
         return [
             'title' => 'string|max:255',
-            'description' => 'string|max:2000',
-            'color' => ['string', new Enum(TodoColorEnum::class)],
+            'description' => 'string|max:255',
+            'color' => 'string|regex:/^#(?:[0-9a-fA-F]{3}){1,2}$/',
             'completed' => 'boolean',
             'favorite' => 'boolean',
         ];
